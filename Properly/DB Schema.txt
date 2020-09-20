@@ -58,6 +58,4 @@ db queries:
 
 SELECT start, end, property_name, contacts.name as contact_name FROM (SELECT leases.start, leases.end, contact_id, properties.name as property_name FROM leases join properties on leases.property_id = properties.id WHERE leases.owner_id = ????) as x join contacts on x.contact_id = contacts.id
 
-
-First update using github
-then using vs code!!
+removed all changes
