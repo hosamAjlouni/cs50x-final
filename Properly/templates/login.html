@@ -1,0 +1,20 @@
+{% extends "layout.html" %} 
+
+{% block main %}
+
+<div class="col-lg-4" style="margin: auto; margin-top: 153px;">
+    <form class="border rounded border-secondary shadow-lg" style="margin-bottom: 0px;padding: 10%;" action="/login" method="post">
+
+        <h3 class="text-center">Login</h3>
+        
+        <small class="form-text text-muted">Username:</small>
+        <input type="text" class="form-control" autocomplete="on" autofocus name="username" placeholder="User Name" required />
+
+        <small class="form-text text-muted">Password:</small>
+        <input type="password" class="form-control" autocomplete="on" autofocus name="password" placeholder="Password" minlength="5" required />
+
+        <button class="btn btn-dark form-control" style="margin-top: 20px;" type="submit">Log in</button>
+    </form>
+</div>
+
+{% endblock %}

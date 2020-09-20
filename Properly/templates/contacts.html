@@ -1,0 +1,53 @@
+{% extends "layout.html" %} 
+
+{% block main %}
+
+<h1 style="margin-left: 5%; margin-bottom: 15px;">Contacts</h1>
+<h2 class="text-muted" style="margin-left: 5%; margin-bottom: 15px;">
+    {% if subtitle %}
+    {{subtitle}}
+    {% endif %}
+</h2>
+
+<!-- ---------------table view of properties-------------------- -->
+
+<!-- <div class="table-responsive" style="padding: 5%;padding-right: 5%;padding-bottom: 5%;padding-left: 5%;padding-top: 2%;">
+    <table class="table table-striped table-dark">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Rent$</th>
+                <th>Beds</th>
+                <th style="width: 30%;">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in ls %}
+            <tr>
+                <td>{{row['name']}}</td>
+                <td>{{row['rent']}}</td>
+                <td>{{row['beds']}}</td>
+                <td>{{row['description']}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div> -->
+
+
+<!-- ---------------cards view of properties-------------------- -->
+
+{% for row in ls %}
+<div class="card-body border rounded" style="background-color: #dfe8ee;margin-bottom: 2%;margin-right: 5%;margin-left: 5%;">
+    <h3 class="card-title">{{row['name']}}</h4>
+    <h5 class="text-muted card-subtitle mb-2">Details</h6>
+            <!-- <img src="{{row['image']}}" style="max-width: 30%;" /> -->
+    <h5 class="text-muted card-subtitle mb-2">Phone: {{row['phone']}}</h6>
+    
+    <!-- <a class="card-link" href="#">Link</a>
+    <a class="card-link" href="#">Link</a> -->
+    
+</div>
+{% endfor %}
+
+{% endblock %}

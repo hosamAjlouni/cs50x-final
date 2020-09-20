@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+<div class="col-lg-4" style="margin: auto; margin-top: 153px;">
+    <form class="border rounded border-secondary shadow-lg" style="margin-bottom: 0px;padding: 10%;" action="/add_contact"
+        method="post">
+
+        <h3>Add Contact</h3>
+        
+        <small class="form-text text-muted">Contact Name:</small>
+        <input type="text" class="form-control" autocomplete="off" autofocus name="name" placeholder="Name" required />
+
+        <small class="form-text text-muted">Phone Number:</small>
+        <input type="tel" class="form-control" autocomplete="off" autofocus pattern="[0-9]{10}" name="phone" placeholder="Phone: ex. 0791234567" required/>
+    
+        <button class="btn btn-dark form-control" style="margin-top: 20px;" type="submit">Add</button>
+    </form>
+</div>
+
+{% endblock %}

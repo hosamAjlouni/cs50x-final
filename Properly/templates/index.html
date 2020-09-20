@@ -1,0 +1,35 @@
+{% extends "layout.html" %} 
+
+{% block main %}
+
+<h1 style="margin-left: 5%; margin-bottom: 15px;">Dashboard</h1>
+<h2 class="text-muted" style="margin-left: 5%; margin-bottom: 15px;">
+    {% if subtitle %}
+        {{subtitle}}
+    {% endif %}
+</h2>
+
+
+<div class="card-body border rounded" style="background-color: #dfe8ee;margin-bottom: 2%;margin-right: 5%;margin-left: 5%;">
+    
+    <h3 class="card-title">Properties Occupancy:</h4>
+    {% if properties_all != 0 %}    
+    <h5 class="card-subtitle mb-2">Occupancy rate: {{'%0.2f' %((properties_occupied / properties_all)*100)}}% </h6>
+    {% else %}
+    <h5 class="card-subtitle mb-2">Occupancy rate: 0.00% </h6>
+    {% endif %}
+    <h5 class="text-muted card-subtitle mb-2">Occupied: {{properties_occupied}}</h6>
+    <h5 class="text-muted card-subtitle mb-2">Available: {{properties_all - properties_occupied}}</h6>
+    <h5 class="text-muted card-subtitle mb-2">Total: {{properties_all}}</h6>
+        
+</div>
+
+<div class="card-body border rounded" style="background-color: #dfe8ee;margin-bottom: 2%;margin-right: 5%;margin-left: 5%;">
+    
+    <h3 class="card-title">Invoices:</h4>
+    <h5 class="text-muted card-subtitle mb-2">Open Invoices: {{invoices_open}}</h6>
+    <h5 class="text-muted card-subtitle mb-2">Outstanding Invoices: {{invoices_outstanding}}</h6>
+        
+</div>
+
+{% endblock %}

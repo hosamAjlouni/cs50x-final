@@ -1,0 +1,31 @@
+{% extends "layout.html" %} 
+
+{% block main %}
+
+<div class="col-lg-4" style="margin: auto; margin-top: 153px;">
+    <form class="border rounded border-dark shadow-lg" style="margin-bottom: 0px;padding: 10%;" action="/add_property"
+        method="post" enctype="multipart/form-data">
+
+        <h3>Add a Property</h3>
+        
+        <small class="form-text text-muted">Property Name:</small>
+        <input type="text" class="form-control" 
+        autocomplete="off" autofocus name="name" placeholder="Name" required />
+        
+        <small class="form-text text-muted"># Beds:</small>
+        <input type="number" class="form-control" autocomplete="off" autofocus name="beds" placeholder="#Beds" required />
+        
+        <small class="form-text text-muted">Rent Amount:</small>
+        <input type="number" class="form-control" autocomplete="off" autofocus name="rent" placeholder="rent $" required />
+        
+        <small class="form-text text-muted">Property Description:</small>
+        <input type="text" class="form-control" autocomplete="off" autofocus name="description" placeholder="Description" required />
+        
+        <small class="form-text text-muted">Property Image:</small>
+        <input type="file" class="form-control-file" accept="image/*" name="image"/>
+
+        <button class="btn btn-dark form-control" style="margin-top: 20px;" type="submit">Add</button>
+    </form>
+</div>
+
+{% endblock %}

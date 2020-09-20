@@ -1,0 +1,30 @@
+{% extends "layout.html" %} 
+
+{% block main %}
+
+<h1 style="margin-left: 5%; margin-bottom: 15px;">Invoices</h1>
+<h2 class="text-muted" style="margin-left: 5%; margin-bottom: 15px;">
+    {% if subtitle %}
+    {{subtitle}}
+    {% endif %}
+</h2>
+
+
+{% for row in ls %}
+<div class="card-body border rounded" style="background-color: #dfe8ee;margin-bottom: 2%;margin-right: 5%;margin-left: 5%;">
+    
+    <h3 class="card-title">Payer: {{row['contact_name']}}</h4>
+    <h3 class="card-subtitle mb-2">Property: {{row['property_name']}}</h6>
+    <h5 class="text-muted card-subtitle mb-2">Amount: {{row['amount']}}$</h6>
+    <h5 class="text-muted card-subtitle mb-2">Due Date: {{row['due_date']}}</h6>
+    <h5 class="text-muted card-subtitle mb-2">Lease ID: {{row['lease_id']}}</h6>
+    <h5 class="text-muted card-subtitle mb-2">Invoice ID: {{row['id']}}</h6>
+    <h3 class="card-title">Status: {% if row['paid'] %} Paid. {% else %} Open. {% endif %}</h4>
+
+    <!-- <a class="card-link" href="#">Link</a>
+    <a class="card-link" href="#">Link</a> -->
+    
+</div>
+{% endfor %}
+
+{% endblock %}

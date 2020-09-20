@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+<div class="col-lg-4" style="margin: auto; margin-top: 153px;">
+    
+    <form class="border rounded border-secondary shadow-lg" style="margin-bottom: 0px;padding: 10%;" action="/add_lease"
+        method="post" enctype="multipart/form-data">
+
+        <h3>Add Lease</h3>
+
+        <small class="form-text text-muted">Select Property:</small>
+        <select class="border rounded shadow-sm form-control custom-select" name="property_id" required>
+            <optgroup>
+                {% for row in properties %}
+                <option value="{{row['id']}}">{{row['name']}}</option>
+                {% endfor %}
+            </optgroup>
+        </select>
+
+        <small class="form-text text-muted">Select tenant:</small>
+        <select class="border rounded shadow-sm form-control custo custom-select" name="contact_id" required>
+            <optgroup>
+                {% for row in contacts %}
+                <option value="{{row['id']}}">{{row['name']}}</option>
+                {% endfor %}
+            </optgroup>
+        </select>
+        
+        <small class="form-text text-muted">Start date:</small>
+        <input class="form-control" type="date" name='start' required />
+        
+        <small class="form-text text-muted">End date:</small>
+        <input class="form-control" type="date" name='end' required />  
+        
+        <small class="form-text text-muted">Lease amount:</small>
+        <input type="number" class="border rounded shadow-sm form-control" 
+        autocomplete="off" autofocus name="amount" placeholder="Amount" required min="0"/>
+        
+        <small class="form-text text-muted">Due date:</small>
+        <input class="form-control" type="date" name='due_date' required />
+
+        <button class="btn btn-dark form-control" style="margin-top: 20px;" type="submit">Add</button>
+    </form>
+</div>
+
+{% endblock %}

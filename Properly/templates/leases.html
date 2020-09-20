@@ -1,0 +1,28 @@
+{% extends "layout.html" %} 
+
+{% block main %}
+
+<h1 style="margin-left: 5%; margin-bottom: 15px;">Leases</h1>
+<h2 class="text-muted" style="margin-left: 5%; margin-bottom: 15px;">
+    {% if subtitle %}
+    {{subtitle}}
+    {% endif %}
+</h2>
+
+
+{% for row in ls %}
+<div class="card-body border rounded" style="background-color: #dfe8ee;margin-bottom: 2%;margin-right: 5%;margin-left: 5%;">
+    <h4 class="card-title">Property: {{row['property_name']}}</h4>
+    <h4 class="card-title">Tenant  : {{row['contact_name']}}</h6>
+            <!-- <img src="{{row['image']}}" style="max-width: 30%;" /> -->
+    <h5 class="text-muted card-subtitle mb-2">Starts at: {{row['start']}}</h6>
+    <h5 class="text-muted card-subtitle mb-2">Ends at  : {{row['end']}}</h6>
+    <h5 class="text-muted card-subtitle mb-2">Lease ID : {{row['id']}}</h6>
+    
+    <!-- <a class="card-link" href="#">Link</a>
+    <a class="card-link" href="#">Link</a> -->
+    
+</div>
+{% endfor %}
+
+{% endblock %}

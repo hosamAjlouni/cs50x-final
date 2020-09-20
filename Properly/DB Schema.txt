@@ -1,0 +1,59 @@
+CREATE TABLE users (
+id INTEGER NOT NULL PRIMARY KEY,
+username TEXT NOT NULL,
+hash TEXT NOT NULL);
+
+
+CREATE TABLE properties (
+id INTEGER NOT NULL PRIMARY KEY,
+name TEXT NOT NULL,
+rent INTEGER NOT NULL,
+beds INTEGER NOT NULL,
+description TEXT NOT NULL,
+owner_id INTEGER NOT NULL,
+image TEXT,
+FOREIGN KEY (owner_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+
+CREATE TABLE contacts (
+id INTEGER NOT NULL PRIMARY KEY,
+name TEXT NOT NULL,
+phone TEXT NOT NULL,
+owner_id INTEGER NOT NULL,
+FOREIGN KEY (owner_id) REFERENCES users(id) ON DELETE CASCADE);
+
+
+CREATE TABLE leases (
+id INTEGER NOT NULL PRIMARY KEY,
+start TEXT NOT NULL,
+end TEXT NOT NULL,
+property_id INTEGER NOT NULL,
+contact_id INTEGER NOT NULL,
+amount INTEGER NOT NULL,
+owner_id INTEGER NOT NULL,
+FOREIGN KEY (property_id) REFERENCES properties(id) ON DELETE CASCADE,
+FOREIGN KEY (contact_id) REFERENCES contacts(id) ON DELETE CASCADE,
+FOREIGN KEY (owner_id) REFERENCES users(id) ON DELETE CASCADE)
+
+
+CREATE TABLE invoices (
+id INTEGER NOT NULL PRIMARY KEY,
+amount float NOT NULL,
+due_date TEXT NOT NULL,
+lease_id INTEGER NOT NULL,
+contact_id INTEGER NOT NULL,
+property_id INTEGER NOT NULL,
+owner_id INTEGER NOT NULL,
+paid INTEGER NOT NULL,
+FOREIGN KEY (lease_id) REFERENCES leases(id) ON DELETE CASCADE,
+FOREIGN KEY (contact_id) REFERENCES contacts(id) ON DELETE CASCADE,
+FOREIGN KEY (property_id) REFERENCES properties(id) ON DELETE CASCADE,
+FOREIGN KEY (owner_id) REFERENCES users(id) ON DELETE CASCADE)
+
+
+---------------------------------------------------------
+
+db queries:
+
+SELECT start, end, property_name, contacts.name as contact_name FROM (SELECT leases.start, leases.end, contact_id, properties.name as property_name FROM leases join properties on leases.property_id = properties.id WHERE leases.owner_id = ????) as x join contacts on x.contact_id = contacts.id

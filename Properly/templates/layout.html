@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="static/css/Navigation-with-Button.css">
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+
+<body>
+
+    <div style="margin-bottom: 100px;">
+        <nav class="navbar navbar-expand-md fixed-top navigation-clean-button" style="background-color:#5d9ba5;">
+            <div class="container-fluid text-black-50">
+                <a class="navbar-brand" href="/">
+                    Properly
+                </a>
+                <button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler">
+                    <span class="sr-only">
+                        Toggle navigation
+                    </span>
+                    <span class="navbar-toggler-icon">
+                    </span>
+                </button>
+
+                <div class="collapse navbar-collapse text-black-50" id="navcol-1">
+
+                    <ul class="nav navbar-nav mr-auto">
+                        
+                        {% if session.user_id %}
+                        <li class="nav-item dropright">
+
+                            <a data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle nav-link stretched-link active" ">
+                                Properties
+                            </a>
+
+                            <div role="menu" class="dropdown-menu">
+                                <a role="presentation" class="dropdown-item" href="/properties">
+                                    All Properties
+                                </a>
+                                <a role="presentation" class="dropdown-item" href="/properties_available">
+                                    Available Properties
+                                </a>
+                                <a role="presentation" class="dropdown-item" href="/properties_occupied">
+                                    Occupied Properties
+                                </a>
+                                <a role="presentation" class="dropdown-item" href="/add_property">
+                                    Add Property
+                                </a>
+                                <a role="presentation" class="dropdown-item" href="/delete_property">
+                                    Delete Property
+                                </a>
+                            </div>
+                        </li>
+                        
+                        <li class="nav-item dropright">
+
+                            <a data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle nav-link stretched-link active">
+                                Contacts
+                            </a>
+
+                            <div role="menu" class="dropdown-menu">
+                                <a role="presentation" class="dropdown-item" href="/contacts">
+                                    All Contacts
+                                </a>
+                                <a role="presentation" class="dropdown-item" href="/currently_leased_contacts">
+                                    Currently Leased
+                                </a>
+                                <a role="presentation" class="dropdown-item" href="/add_contact">
+                                    Add Contact
+                                </a>
+                                <a role="presentation" class="dropdown-item" href="/delete_contact">
+                                    Delete Contact
+                                </a>
+                            </div>
+                        </li>
+                        
+                        <li class="nav-item dropright">
+
+                            <a data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle nav-link stretched-link active">
+                                Leases
+                            </a>
+
+                            <div role="menu" class="dropdown-menu">
+                                <a role="presentation" class="dropdown-item" href="/leases">
+                                    All Leases
+                                </a>
+                                <a role="presentation" class="dropdown-item" href="/leases_active">
+                                    Active Leases
+                                </a>
+                                <a role="presentation" class="dropdown-item" href="/leases_upcoming">
+                                    Upcoming
+                                </a>
+                                <a role="presentation" class="dropdown-item" href="/leases_past">
+                                    Past Leases
+                                </a>
+                                <a role="presentation" class="dropdown-item" href="/add_lease">
+                                    Add Lease
+                                </a>
+                                <a role="presentation" class="dropdown-item" href="/delete_lease">
+                                    Delete Lease
+                                </a>
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropright">
+
+                            <a data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle nav-link stretched-link active">
+                                Accounting
+                            </a>
+
+                            <div role="menu" class="dropdown-menu">
+                                <a role="presentation" class="dropdown-item" href="/invoices">
+                                    All Invoices
+                                </a>
+                                <a role="presentation" class="dropdown-item" href="/invoices_outstanding">
+                                    Outstanding
+                                </a>
+                                <a role="presentation" class="dropdown-item" href="/invoices_open">
+                                    Open
+                                </a>
+                                <a role="presentation" class="dropdown-item" href="/invoices_paid">
+                                    Paid
+                                </a>
+                                <a role="presentation" class="dropdown-item" href="/receive_payment">
+                                    Receive Payment
+                                </a>
+                                <a role="presentation" class="dropdown-item" href="/delete_invoice">
+                                    Delete Invoice
+                                </a>
+                            </div>
+                        </li>
+
+                        {% endif %}
+                    </ul>
+
+                    <span class="navbar-text actions">
+
+                        {% if session.user_id %}
+                        <a class="btn btn-dark action-button" role="button" href="/logout">LogOut</a>
+                        {% else %}
+                        <a class="login text-black-50" href="/login">LogIn</a>
+                        <a class="btn btn-dark action-button" role="button" href="/signup">Sign Up</a>
+                        {% endif %}
+                    </span>
+
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    {% if get_flashed_messages() %}
+
+    <header>
+        <div class="alert alert-primary fixed-bottom border text-center" style="margin-bottom: 0px;" role="alert">
+            {{ get_flashed_messages() | join(" ") }}
+        </div>
+    </header>
+
+    {% endif %}
+
+    <main>
+
+        {% block main %}
+
+        {% endblock %}
+
+    </main>
+
+    <script src="static/js/jquery.min.js"></script>
+    <script src="static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="static/js/bs-init.js"></script>
+</body>
+
+</html>
